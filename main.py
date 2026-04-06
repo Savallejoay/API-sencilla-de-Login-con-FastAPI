@@ -29,15 +29,9 @@ def create_db_and_users():
                 session.add(user)
 
         session.commit()
-
-# 👉 Esto hace que se cree la DB al iniciar
 @app.on_event("startup")
 def on_startup():
     create_db_and_users()
-
-# -----------------------------
-# LOGIN
-# -----------------------------
 @app.post("/login")
 def login(user: User):
     with Session(engine) as session:
